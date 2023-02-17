@@ -43,7 +43,7 @@ export default function ModalSelfmade( { showModal, addNewToDo, content, onChang
                         color: '#FFFBFE',
                         background: `#081E34`,
                         borderRadius: '100px'
-                    }} onClick={launchTwoFunctions}>Add</button>
+                    }} onClick={(content !== '') && launchTwoFunctions}>Add</button>
                 </div>
             </>
         )

@@ -59,9 +59,15 @@ const [content, setContent] = useState('');
 // const [counterForId, setCounterForId] = useState(6);
 const [showModal, setShowModal] = useState(false);
 
-const toggleShowAndCloseModal = () => {
-  setShowModal(!showModal)
-};
+// const toggleShowAndCloseModal = () => {
+//   setShowModal(!showModal);
+// };
+
+// function toggleShowAndCloseModal() {
+//   setShowModal(!showModal);
+// }
+
+
 // function incrementCounterForId() {
 //   setCounterForId(counterForId + 1)
 // }
@@ -75,7 +81,9 @@ function addNewToDo() {
     if (content !== '') {
       // incrementCounterForId();
       const newTodo = [{id: uuid(), category:'To do', checked: false, content:content, isOpenModalTripleDotsMenu:false}, ...allToDos];
-      toggleShowAndCloseModal();
+      // toggleShowAndCloseModal();
+      setShowModal(!showModal);
+      // setContent('');
       return newTodo;
     } else {
       return allToDos;
@@ -84,7 +92,7 @@ function addNewToDo() {
 }
 
 function updateIsOpenTripleDotsMenu(id) {
-  setAllToDos((allToDos) => {
+  setAllToDos(() => {
     // find target obj with id in array 'allToDos'
     const selectedObj = allToDos.filter(obj => obj.id === id)[0];
     // find its INDEX
@@ -112,7 +120,7 @@ function changeViewedListByCategory(cat) {
 
   return (
     <div className="App">
-      < Header categoryForView={categoryForView} changeViewedListByCategory={changeViewedListByCategory} showModal={showModal} toggleShowAndCloseModal={toggleShowAndCloseModal} addNewToDo={addNewToDo} content={content} onChangeTextInput={onChangeTextInput} />
+      < Header categoryForView={categoryForView} changeViewedListByCategory={changeViewedListByCategory} showModal={showModal} setShowModal={setShowModal} addNewToDo={addNewToDo} content={content} onChangeTextInput={onChangeTextInput} />
       < Main categoryForView={categoryForView} allToDos={allToDos} setAllToDos={setAllToDos} updateIsOpenTripleDotsMenu={updateIsOpenTripleDotsMenu} />
       < Footer />
     </div>

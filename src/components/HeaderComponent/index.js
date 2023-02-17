@@ -3,7 +3,7 @@ import PLUS_SVG from './images/Plus Math.svg';
 import ModalSelfmade from './ModalSelfmade';
 
 
-export default function Header( { categoryForView, changeViewedListByCategory, showModal, toggleShowAndCloseModal, addNewToDo, content, onChangeTextInput } ) {
+export default function Header( { categoryForView, changeViewedListByCategory, showModal, setShowModal, addNewToDo, content, onChangeTextInput } ) {
 
     // const [category, setCategory] = useState('To do');
     // function changeViewedListByCategory(cat) {
@@ -16,7 +16,7 @@ export default function Header( { categoryForView, changeViewedListByCategory, s
     };
 
     function launchTwoFuncs() {
-        toggleShowAndCloseModal();
+        setShowModal(!showModal);
         handleClickToRotate();
     }
 
