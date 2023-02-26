@@ -3,61 +3,11 @@ import {VECTOR_SVG_PATH} from './images/';
 import ModalTripleDotsMenu from './ModalTripleDotsMenu';
 import ModalForTrash from './ModalForTrash';
 
-export default function ToDoListRender({ categoryForView, allToDos, setAllToDos, updateIsOpenTripleDotsMenu }) {
+export default function ToDoListRender({ dropToTrash, handleChecked, deleteForever, moveBackToToDO, categoryForView, allToDos, updateIsOpenTripleDotsMenu }) {
 
 
 
-    function dropToTrash(id) {
-        setAllToDos(() => {
-            const index = allToDos.findIndex(item => item.id === id);
-            const selectedObj = allToDos.filter(item => item.id === id)[0];
-            selectedObj.category = 'Trash';
-            selectedObj.isOpenModalTripleDotsMenu = false;
-            const leftPart = allToDos.slice(0, index);
-            const rightPart = allToDos.slice(index+1, allToDos.length);
-            const newAllToDos = [...leftPart, selectedObj, ...rightPart];
-            return newAllToDos;
-        })
 
-    }
-
-    function handleChecked(id) {
-        setAllToDos(() => {
-            const selectedToDo = allToDos.filter(obj => obj.id === id)[0];
-            selectedToDo.checked = !selectedToDo.checked;
-            if (selectedToDo.checked && selectedToDo.category === 'To do' && categoryForView !== 'Trash') {
-                selectedToDo.category = 'Done';
-                return [...allToDos.filter(obj => obj.id !== id), selectedToDo]
-            } else if (!selectedToDo.checked && selectedToDo.category === 'Done' && categoryForView !== 'Trash') {
-                selectedToDo.category = 'To do';
-                return [selectedToDo, ...allToDos.filter(obj => obj.id !== id)]
-            }
-        })
-    }
-
-    function deleteForever(id) {
-        setAllToDos(() => {
-            const indexToDelete = allToDos.findIndex(item => item.id === id);
-            const leftPart = allToDos.slice(0, indexToDelete);
-            const rightPart = allToDos.slice(indexToDelete + 1, allToDos.length);
-            const newAllToDos = [...leftPart, ...rightPart];
-            return newAllToDos;
-        })
-    }
-
-    function moveBackToToDO(id) {
-        setAllToDos(() => {
-            const index = allToDos.findIndex(item => item.id === id);
-            const selectedObj = allToDos.filter(item => item.id === id)[0];
-            selectedObj.category = 'To do';
-            selectedObj.checked = false;
-            selectedObj.isOpenModalTripleDotsMenu = false;
-            const leftPart = allToDos.slice(0, index);
-            const rightPart = allToDos.slice(index+1, allToDos.length);
-            const newAllToDos = [...leftPart, selectedObj, ...rightPart];
-            return newAllToDos;
-        })
-    }
 
     let viewList = []
     if (categoryForView === 'To do') {

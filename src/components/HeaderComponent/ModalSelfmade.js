@@ -2,8 +2,11 @@
 export default function ModalSelfmade( { showModal, addNewToDo, content, onChangeTextInput, handleClickToRotate } ) {
 
     function launchTwoFunctions() {
-        addNewToDo();
-        handleClickToRotate();
+        if (content !== '') {
+            addNewToDo();
+            handleClickToRotate();
+        }
+
     }
 
     if (showModal) {
@@ -43,7 +46,7 @@ export default function ModalSelfmade( { showModal, addNewToDo, content, onChang
                         color: '#FFFBFE',
                         background: `#081E34`,
                         borderRadius: '100px'
-                    }} onClick={(content !== '') && launchTwoFunctions}>Add</button>
+                    }} onClick={launchTwoFunctions}>Add</button>
                 </div>
             </>
         )

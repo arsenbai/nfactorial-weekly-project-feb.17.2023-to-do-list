@@ -5,10 +5,7 @@ import ModalSelfmade from './ModalSelfmade';
 
 export default function Header( { categoryForView, changeViewedListByCategory, showModal, setShowModal, addNewToDo, content, onChangeTextInput } ) {
 
-    // const [category, setCategory] = useState('To do');
-    // function changeViewedListByCategory(cat) {
-    //     setCategory(cat)
-    // }
+
 
     const [rotation, setRotation] = useState(0);
     function handleClickToRotate() {
@@ -20,58 +17,9 @@ export default function Header( { categoryForView, changeViewedListByCategory, s
         handleClickToRotate();
     }
 
-    // TO DO BUTTON
-    const [isActiveToDoButton, setIsActiveToDoButton] = useState(true);
-    function changeToDoButtonCSS() {
-        setIsActiveToDoButton(!isActiveToDoButton)
-    }
-
-    function triggerFunctionGroupToDo() {
-        changeViewedListByCategory('To do');
-        changeToDoButtonCSS();
-        if (isActiveDoneButton) {
-            changeDoneButtonCSS()
-        };
-        if (isActiveTrashButton) {
-            changeTrashButtonCSS()
-        };
-    }
 
 
 
-    // Done BUTTON
-    const [isActiveDoneButton, setIsActiveDoneButton] = useState(false);
-    function changeDoneButtonCSS() {
-        setIsActiveDoneButton(!isActiveDoneButton)
-    }
-
-    function triggerFunctionGroupDone() {
-        changeViewedListByCategory('Done');
-        changeDoneButtonCSS();
-        if (isActiveTrashButton) {
-            changeTrashButtonCSS()
-        };
-        if (isActiveToDoButton) {
-            changeToDoButtonCSS()
-        };
-    }
-
-    // Trash BUTTON
-    const [isActiveTrashButton, setIsActiveTrashButton] = useState(false);
-    function changeTrashButtonCSS() {
-        setIsActiveTrashButton(!isActiveTrashButton)
-    }
-
-    function triggerFunctionGroupTrash() {
-        changeViewedListByCategory('Trash');
-        changeTrashButtonCSS();
-        if (isActiveToDoButton) {
-            changeToDoButtonCSS()
-        };
-        if (isActiveDoneButton) {
-            changeDoneButtonCSS()
-        };
-    }
 
     return (
         <div className="d-flex flex-column" style={{
@@ -106,9 +54,9 @@ export default function Header( { categoryForView, changeViewedListByCategory, s
                         gap: '16px'
                         }}>
 
-                        <button className={`${isActiveToDoButton ? "statusButtonActive" : "statusButtonInactive"}`} onClick={(categoryForView !== 'To do') ? triggerFunctionGroupToDo : ''}>To do</button>
-                        <button className={`${isActiveDoneButton ? "statusButtonActive" : "statusButtonInactive"}`} onClick={(categoryForView !== 'Done') ? triggerFunctionGroupDone : ''}>Done</button>
-                        <button className={`${isActiveTrashButton ? "statusButtonActive" : "statusButtonInactive"}`} onClick={(categoryForView !== 'Trash') ? triggerFunctionGroupTrash : ''}>Trash</button>
+                        <button className={`${categoryForView === 'To do' ? "statusButtonActive" : "statusButtonInactive"}`} onClick={() => changeViewedListByCategory('To do')}>To do</button>
+                        <button className={`${categoryForView === 'Done' ? "statusButtonActive" : "statusButtonInactive"}`} onClick={() => changeViewedListByCategory('Done')}>Done</button>
+                        <button className={`${categoryForView === 'Trash' ? "statusButtonActive" : "statusButtonInactive"}`} onClick={() => changeViewedListByCategory('Trash')}>Trash</button>
 
                     </div>
 
